@@ -72,7 +72,7 @@ def tempered_softmax(data, t2):
     return softmax_output
 
 
-def tempered_log_loss(class_probabilities, labels, t1):
+def tempered_logistic_loss(class_probabilities, labels, t1):
     """ calculate the tempered log loss for your softmax activations
         Args:
             class_probabilities (Tensor): the output of your tempered_softmax
@@ -82,6 +82,6 @@ def tempered_log_loss(class_probabilities, labels, t1):
             your summed log loss
     """
     loss = torch.sum(labels * (tempered_log(labels, t1) * tempered_log(class_probabilities, t1))\
-                         - (1/(2-t1))*(torch.pow(labels, 2-t1) - torch.pow(class_probabilities, t1)),
+                         - (1/(2-t1))*(torch.pow(labels, 2-t1) - torch.pow(class_probabilities, t1))
             )
     return loss

@@ -1,14 +1,14 @@
 import torch.nn as nn
 
-from bitempered_funcs import tempered_log_loss, tempered_softmax
+from bitempered_funcs import tempered_logistic_loss, tempered_softmax
 
-class BitemperedLogLoss(nn.Module):
+class BitemperedLogisticLoss(nn.Module):
     def __init__(self, t1):
-        super(BitemperedLogLoss, self).__init__()
+        super(BitemperedLogisticLoss, self).__init__()
         self.t1 = t1
 
     def forward(self, input, target):
-        return tempered_log_loss(input, target, self.t1)
+        return tempered_logistic_loss(input, target, self.t1)
 
 
 class BitemperedSoftmax(nn.Module):
